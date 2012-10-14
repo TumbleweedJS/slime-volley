@@ -1,0 +1,18 @@
+*~
+docs/
+#*#
+node_modules/
+build/
+
+# OSX Gitignore
+.DS_Store
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+#IDE files (Webstorm ?)
+.idea/
