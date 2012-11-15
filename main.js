@@ -42,6 +42,7 @@ obj_ball.img = ball_sprite;
 var collision_yellow = new TW.Collision.CollisionCircle(150, 400, 50);
 var collision_red = new TW.Collision.CollisionCircle(650, 400, 50);
 var collision_ball = new TW.Collision.CollisionCircle(313, 213, 13);
+var collision_net = new TW.Collision.CollisionBox(390, 325, 20, 100);
 
 yellow.collision = collision_yellow;
 obj_ball.collision = collision_ball;

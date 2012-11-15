@@ -10,6 +10,7 @@ function player(){
     this.move = 10;
     this.img = null;
     this.collision = null;
+    this.score = 0;
 }
 
 player.prototype.moveleft = function () {
@@ -31,5 +32,4 @@ player.prototype.update = function () {
         this.moveleft();
     if (keyboard.getState("KEY_D") === TW.Event.KeyboardInput.KEY_PRESSED)
         this.moveright();
-
 }

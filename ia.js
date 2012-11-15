@@ -10,6 +10,7 @@ function ia(){
     this.move = 10;
     this.img = null;
     this.collision = null;
+    this.score = 0;
 }
 
 ia.prototype.moveleft = function () {
