@@ -37,8 +37,15 @@ ball.prototype.move = function() {
 //        this.reset();
         this.vy = -20;
     }
-    if (this.img.x <= 0 || this.img.x + this.vx >= 800) {
+    if (this.img.x <= 0 ) {
         this.vx *= -1;
+        this.img.x = 0;
+        this.collision.x = 13;
+    }
+    if (this.img.x > 775) {
+        this.vx *= -1;
+        this.img.x = 775;
+        this.collision.x = 788;
     }
     if (this.collision.isCollidingBox(collision_net)) {
         this.vx *= -1;
@@ -58,15 +65,21 @@ ball.prototype.bounce = function(circle) {
     var vector_normal_y = this.collision.y - circle.collision.y;
 
 var penetration = (circle.collision.radius + this.collision.radius) / Math.sqrt(vector_normal_x * vector_normal_x + vector_normal_y * vector_normal_y);
-    if (penetration > 1){
-//        alert(this.collision.x + " " + this.collision.y);
-        this.collision.x = circle.collision.x + vector_normal_x * penetration;
-        this.collision.y = circle.collision.y + vector_normal_y * penetration;
-//        alert(this.collision.x + " " + this.collision.y);
-        this.img.x = circle.collision.x + vector_normal_x * penetration;
-        this.img.y = circle.collision.y + vector_normal_y * penetration;
-    }
 
+    if (penetration > 1) {
+        this.collision.x -= this.vx;
+        this.collision.y -= this.vy;
+        this.img.x -= this.vx;
+        this.img.y -= this.vy;
+
+/*
+        this.collision.x = circle.collision.x + (vector_normal_x * penetration);
+        this.collision.y = circle.collision.y + (vector_normal_y * penetration);
+        this.img.x = circle.collision.x + (vector_normal_x * penetration);
+        this.img.y = circle.collision.y + (vector_normal_y * penetration);*/
+    }
+    vector_normal_x = this.collision.x - circle.collision.x;
+    vector_normal_y = this.collision.y - circle.collision.y;
     var vector_x = -vector_normal_y;
     var vector_y = vector_normal_x;
 
