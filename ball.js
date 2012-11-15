@@ -22,8 +22,8 @@ ball.prototype.reset = function () {
 
     alert("Score : " + yellow.score + " - " + red.score);
 
-    this.vx = -20;
-    this.vy = 1
+    this.vx = 20;
+    this.vy = 1;
     this.img.x = 300;
     this.collision.x = 313;
     this.img.y = 200;
@@ -43,10 +43,10 @@ ball.prototype.move = function() {
     if (this.collision.isCollidingBox(collision_net)) {
         this.vx *= -1;
     }
-
-
-    if (this.vy < 10)
+    if (this.vy < 20)
         this.vy += 1;
+
+
     this.img.x += this.vx;
     this.img.y += this.vy;
     this.collision.x += this.vx;
@@ -54,40 +54,27 @@ ball.prototype.move = function() {
 }
 
 ball.prototype.bounce = function(circle) {
-//    alert(circle.collision.x + "," + circle.collision.y);
-//    alert(this.collision.x + "," + this.collision.y);
-
     var vector_normal_x = this.collision.x - circle.collision.x;
     var vector_normal_y = this.collision.y - circle.collision.y;
 
-var penetration = circle.collision.radius + this.collision.radius - Math.sqrt(vector_normal_x * vector_normal_x + vector_normal_y * vector_normal_y);
-
-    if (penetration > 0){
-        this.collision.x -= penetration;
-        this.collision.y -= penetration;
-        this.img.x -= penetration;
-        this.img.y -= penetration;
-        vector_normal_x = this.collision.x - circle.collision.x;
-        vector_normal_y = this.collision.y - circle.collision.y;
+var penetration = (circle.collision.radius + this.collision.radius) / Math.sqrt(vector_normal_x * vector_normal_x + vector_normal_y * vector_normal_y);
+    if (penetration > 1){
+//        alert(this.collision.x + " " + this.collision.y);
+        this.collision.x = circle.collision.x + vector_normal_x * penetration;
+        this.collision.y = circle.collision.y + vector_normal_y * penetration;
+//        alert(this.collision.x + " " + this.collision.y);
+        this.img.x = circle.collision.x + vector_normal_x * penetration;
+        this.img.y = circle.collision.y + vector_normal_y * penetration;
     }
-
-    vector_normal_x /=  Math.sqrt(vector_normal_x * vector_normal_x + vector_normal_y * vector_normal_y);
-    vector_normal_y /=  Math.sqrt(vector_normal_x * vector_normal_x + vector_normal_y * vector_normal_y);
 
     var vector_x = -vector_normal_y;
     var vector_y = vector_normal_x;
 
-//    alert("vector normal: " + vector_normal_x + "," + vector_normal_y);
-//    alert("vector : " + vector_x + "," + vector_y);
-//    alert("vitesse vec : "+ this.vx + "," + this.vy);
-
     var dp1 = this.vx * vector_x + this.vy * vector_y;
     var dp2 = this.vx * vector_normal_x + this.vy * vector_normal_y;
-//    alert ("dp1 : " + dp1 + " dp2 : " + dp2);
 
     var proj1_x = dp1 * (vector_x / Math.sqrt(vector_x * vector_x + vector_y * vector_y));
     var proj1_y = dp1 * (vector_y / Math.sqrt(vector_x * vector_x + vector_y * vector_y));
-//    alert("proj 1 = " + proj1_x + ","+ proj1_y);
 
     var proj2_x = dp2 * (vector_normal_x / Math.sqrt(vector_x * vector_x + vector_y * vector_y));
     var proj2_y = dp2 * (vector_normal_y / Math.sqrt(vector_x * vector_x + vector_y * vector_y));
@@ -95,20 +82,21 @@ var penetration = circle.collision.radius + this.collision.radius - Math.sqrt(ve
     proj2_x *= -1;
     proj2_y *= -1;
 
-//    alert(this.vx + "," + this.vy);
     this.vx = proj1_x + proj2_x;
     this.vy = proj1_y + proj2_y;
-//    alert(this.vx + "," + this.vy);
-//    this.vx /= 10;
-//    this.vy /= 10;
-//    this.vy = -20;
+
+    var lenght = (Math.sqrt(this.vx * this.vx + this.vy * this.vy) / 25);
+    this.vx = this.vx / lenght;
+    this.vy = this.vy / lenght;
+
+//    alert (this.vx + "  " + this.vy);
 }
 
 ball.prototype.update = function () {
     var date = new Date();
 
 //    if (this.collision.isCollidingCircle(yellow.collision) || this.collision.isCollidingCircle(red.collision) ){
-//        this.vy = -20;
+//       this.vy = -20;
 //        this.vx *= -1;
 //        }
 
@@ -117,7 +105,7 @@ ball.prototype.update = function () {
         this.time = date.valueOf();
     } else {
         var count = (date.valueOf() - this.time);
-        count /= 20;
+        count /= 20 ;
         if (count > 1){
             this.time = date.valueOf();
         }
