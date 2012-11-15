@@ -66,12 +66,11 @@ ball.prototype.bounce = function(circle) {
 
 var penetration = (circle.collision.radius + this.collision.radius) / Math.sqrt(vector_normal_x * vector_normal_x + vector_normal_y * vector_normal_y);
 
-    if (penetration > 1) {
-        this.collision.x -= this.vx;
-        this.collision.y -= this.vy;
-        this.img.x -= this.vx;
-        this.img.y -= this.vy;
-
+    while (this.collision.isCollidingCircle(circle.collision)){
+        this.collision.x -= this.vx / 10;
+        this.collision.y -= this.vy / 10;
+        this.img.x -= this.vx / 10;
+        this.img.y -= this.vy / 10;
 /*
         this.collision.x = circle.collision.x + (vector_normal_x * penetration);
         this.collision.y = circle.collision.y + (vector_normal_y * penetration);
