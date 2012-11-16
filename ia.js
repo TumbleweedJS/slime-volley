@@ -29,7 +29,7 @@ ia.prototype.moveright = function () {
 
 ia.prototype.update = function () {
 
-    if (obj_ball.img.x > 310 && obj_ball.img.y < this.img.y) {
+    if (obj_ball.img.x > 360 ) {// && obj_ball.img.y < this.img.y) {
         if (obj_ball.collision.x < this.collision.x - 5)
             this.moveleft();
         else if (obj_ball.collision.x > this.collision.x + 5)

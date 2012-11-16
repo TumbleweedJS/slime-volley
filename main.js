@@ -25,7 +25,7 @@ var ball_img = new TW.Graphic.ImageRect(ball_i, 0, 0, 25, 25);
 var ball_sprite = new TW.Graphic.Sprite(300, 200, 25, 25, ball_img);
 
 var gameloop = new TW.Gameloop.Gameloop();
-gameloop.fps = 30;
+gameloop.fps = 60;
 gameloop.tick_per_second = 60;
 
 keyboard = new TW.Event.KeyboardInput();

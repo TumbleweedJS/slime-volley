@@ -7,7 +7,7 @@
  */
 
 function ball(){
-    this.vx = 20;
+    this.vx = -20;
     this.vy = 1;
     this.img = null;
     this.collision = null;
@@ -22,7 +22,7 @@ ball.prototype.reset = function () {
 
     alert("Score : " + yellow.score + " - " + red.score);
 
-    this.vx = 20;
+    this.vx = -20;
     this.vy = 1;
     this.img.x = 300;
     this.collision.x = 313;
@@ -34,8 +34,12 @@ ball.prototype.reset = function () {
 
 ball.prototype.move = function() {
     if (this.img.y >= 375) {
-//        this.reset();
-        this.vy = -20;
+        this.reset();
+//        this.collision.x -= this.vx;
+//        this.collision.y -= this.vy;
+//        this.img.x -= this.vx;
+//        this.img.y -= this.vy;
+//        this.vy = -20;
     }
     if (this.img.x <= 0 ) {
         this.vx *= -1;
@@ -48,7 +52,12 @@ ball.prototype.move = function() {
         this.collision.x = 788;
     }
     if (this.collision.isCollidingBox(collision_net)) {
+        this.collision.x -= this.vx;
+        this.collision.y -= this.vy;
+        this.img.x -= this.vx;
+        this.img.y -= this.vy;
         this.vx *= -1;
+        this.vy *= -1;
     }
     if (this.vy < 20)
         this.vy += 1;
@@ -61,21 +70,12 @@ ball.prototype.move = function() {
 }
 
 ball.prototype.bounce = function(circle) {
-    var vector_normal_x = this.collision.x - circle.collision.x;
-    var vector_normal_y = this.collision.y - circle.collision.y;
-
-var penetration = (circle.collision.radius + this.collision.radius) / Math.sqrt(vector_normal_x * vector_normal_x + vector_normal_y * vector_normal_y);
 
     while (this.collision.isCollidingCircle(circle.collision)){
         this.collision.x -= this.vx / 10;
         this.collision.y -= this.vy / 10;
         this.img.x -= this.vx / 10;
         this.img.y -= this.vy / 10;
-/*
-        this.collision.x = circle.collision.x + (vector_normal_x * penetration);
-        this.collision.y = circle.collision.y + (vector_normal_y * penetration);
-        this.img.x = circle.collision.x + (vector_normal_x * penetration);
-        this.img.y = circle.collision.y + (vector_normal_y * penetration);*/
     }
     vector_normal_x = this.collision.x - circle.collision.x;
     vector_normal_y = this.collision.y - circle.collision.y;
