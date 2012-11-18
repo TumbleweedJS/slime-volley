@@ -61,13 +61,13 @@ player.prototype.jump = function() {
 
 player.prototype.update = function() {
 	if (this.type === "PLAYER") {
-		if (keyboard.getState("KEY_A") === TW.Event.KeyboardInput.KEY_PRESSED) {
+		if (keyboard.getState("KEY_LEFT") === TW.Event.KeyboardInput.KEY_PRESSED) {
 			this.moveleft();
 		}
-		if (keyboard.getState("KEY_D") === TW.Event.KeyboardInput.KEY_PRESSED) {
+		if (keyboard.getState("KEY_RIGHT") === TW.Event.KeyboardInput.KEY_PRESSED) {
 			this.moveright();
 		}
-		if (keyboard.getState("KEY_W") === TW.Event.KeyboardInput.KEY_PRESSED) {
+		if (keyboard.getState("KEY_SPACE") === TW.Event.KeyboardInput.KEY_PRESSED) {
 			this.init_jump();
 		}
 
