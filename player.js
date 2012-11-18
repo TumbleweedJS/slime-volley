@@ -7,7 +7,7 @@
  */
 
 function player(x_min, x_max, type) {
-	this.move = 20;
+	this.move = 10;
 	this.img = null;
 	this.collision = null;
 	this.score = 0;
@@ -44,12 +44,13 @@ player.prototype.update = function() {
 		if (keyboard.getState("KEY_D") === TW.Event.KeyboardInput.KEY_PRESSED) {
 			this.moveright();
 		}
+
 	} else if (this.type === "IA") {
 		if (ball.img.x > 360) {
-			if (ball.collision.x < this.collision.x - 50) {
+			if (ball.collision.x < this.collision.x - 5) {
 				this.moveleft();
 			}
-			else if (ball.collision.x > this.collision.x + 50) {
+			else if (ball.collision.x > this.collision.x + 5) {
 				this.moveright();
 			}
 		}

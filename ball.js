@@ -26,8 +26,8 @@ ball.prototype.reset = function() {
 
 	this.vx = -20;
 	this.vy = 1;
-	this.img.x = 300;
-	this.collision.x = 313;
+	this.img.x = 400;
+	this.collision.x = 413;
 	this.img.y = 200;
 	this.collision.y = 213;
 	this.time = 0;
@@ -57,8 +57,8 @@ ball.prototype.move = function() {
 		while (this.collision.isCollidingBox(collision_net)) {
 			this.collision.x -= this.vx / 10;
 			this.collision.y -= this.vy / 10;
-			this.img.x -= this.vx;
-			this.img.y -= this.vy;
+			this.img.x -= this.vx / 10;
+			this.img.y -= this.vy / 10;
 		}
 		this.vx *= -1;
 		this.vy *= -1;
@@ -66,7 +66,6 @@ ball.prototype.move = function() {
 	if (this.vy < 20) {
 		this.vy += 1;
 	}
-
 
 	this.img.x += this.vx;
 	this.img.y += this.vy;

@@ -30,15 +30,15 @@ var collision_net = new TW.Collision.CollisionBox(390, 325, 20, 100);
 var ball_img = new Image();
 ball_img.src = "images/ball.png";
 var ball_image_rect = new TW.Graphic.ImageRect(ball_img, 0, 0, 25, 25);
-var ball_sprite = new TW.Graphic.Sprite(300, 200, 25, 25, ball_image_rect);
+var ball_sprite = new TW.Graphic.Sprite(400, 200, 25, 25, ball_image_rect);
 var ball = new ball();
 ball.img = ball_sprite;
-var collision_ball = new TW.Collision.CollisionCircle(313, 213, 13);
+var collision_ball = new TW.Collision.CollisionCircle(413, 213, 13);
 ball.collision = collision_ball;
 
 var gameloop = new TW.Gameloop.Gameloop();
 gameloop.fps = 30;
-gameloop.tick_per_second = 30;
+gameloop.tick_per_second = 60;
 
 keyboard = new TW.Event.KeyboardInput();
 
