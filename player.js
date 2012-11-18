@@ -14,6 +14,7 @@ function player(x_min, x_max, type) {
 	this.x_min = x_min;
 	this.x_max = x_max;
 	this.type = type;
+	this.vy = null;
 };
 
 player.prototype.moveleft = function() {
@@ -36,6 +37,28 @@ player.prototype.moveright = function() {
 	}
 };
 
+player.prototype.init_jump = function() {
+
+	if (this.vy === null) {
+		this.vy = -15;
+	}
+};
+
+player.prototype.jump = function() {
+	this.img.y += this.vy;
+	this.collision.y += this.vy;
+
+	if (this.vy !== null) {
+		this.vy += 1;
+	}
+
+	if (this.img.y > 350) {
+		this.img.y = 350;
+		this.collision.y = 400;
+		this.vy = null;
+	}
+}
+
 player.prototype.update = function() {
 	if (this.type === "PLAYER") {
 		if (keyboard.getState("KEY_A") === TW.Event.KeyboardInput.KEY_PRESSED) {
@@ -43,6 +66,9 @@ player.prototype.update = function() {
 		}
 		if (keyboard.getState("KEY_D") === TW.Event.KeyboardInput.KEY_PRESSED) {
 			this.moveright();
+		}
+		if (keyboard.getState("KEY_W") === TW.Event.KeyboardInput.KEY_PRESSED) {
+			this.init_jump();
 		}
 
 	} else if (this.type === "IA") {
@@ -60,4 +86,5 @@ player.prototype.update = function() {
 			this.moveleft();
 		}
 	}
+	this.jump();
 };

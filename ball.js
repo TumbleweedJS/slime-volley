@@ -76,6 +76,9 @@ ball.prototype.move = function() {
 
 ball.prototype.bounce = function(circle) {
 
+	if (this.collision.y > circle.collision.y) {
+		return;
+	}
 	while (this.collision.isCollidingCircle(circle.collision)) {
 		this.collision.x -= this.vx / 10;
 		this.collision.y -= this.vy / 10;
@@ -110,12 +113,6 @@ ball.prototype.bounce = function(circle) {
 
 ball.prototype.update = function() {
 	var date = new Date();
-
-	//    if (this.collision.isCollidingCircle(yellow.collision) || this.collision.isCollidingCircle(red.collision) ){
-	//       this.vy = -20;
-	//        this.vx *= -1;
-	//        }
-
 	if (this.time === 0) {
 		this.move();
 		this.time = date.valueOf();
