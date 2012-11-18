@@ -29,16 +29,16 @@ ia.prototype.moveright = function () {
 
 ia.prototype.update = function () {
 
-    if (obj_ball.img.x > 360 ) {// && obj_ball.img.y < this.img.y) {
-        if (obj_ball.collision.x < this.collision.x - 5)
-            this.moveleft();
-        else if (obj_ball.collision.x > this.collision.x + 5)
-            this.moveright();
-       }
-    else if (this.img.x < 600) {
-        this.moveright();
-    } else if (this.img.x > 600) {
-        this.moveleft();
-    }
+	if (ball.img.x > 360 ) {
+		if (ball.collision.x < this.collision.x - 5)
+			this.moveleft();
+		else if (ball.collision.x > this.collision.x + 5)
+			this.moveright();
+	}
+	else if (this.img.x < 600) {
+		this.moveright();
+	} else if (this.img.x > 600) {
+		this.moveleft();
+	}
 
 }

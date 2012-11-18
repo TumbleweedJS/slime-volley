@@ -16,13 +16,13 @@ function ball() {
 ball.prototype.reset = function() {
 	gameloop.pause();
 	if (this.img.x < 390) {
-		red.score++;
+		red_slime.score++;
 	}
 	else {
-		yellow.score++;
+		yellow_slime.score++;
 	}
 
-	alert("Score : " + yellow.score + " - " + red.score);
+	alert("Score : " + yellow_slime.score + " - " + red_slime.score);
 
 	this.vx = -20;
 	this.vy = 1;
@@ -54,10 +54,12 @@ ball.prototype.move = function() {
 		this.collision.x = 788;
 	}
 	if (this.collision.isCollidingBox(collision_net)) {
-		this.collision.x -= this.vx;
-		this.collision.y -= this.vy;
-		this.img.x -= this.vx;
-		this.img.y -= this.vy;
+		while (this.collision.isCollidingBox(collision_net)) {
+			this.collision.x -= this.vx / 10;
+			this.collision.y -= this.vy / 10;
+			this.img.x -= this.vx;
+			this.img.y -= this.vy;
+		}
 		this.vx *= -1;
 		this.vy *= -1;
 	}
@@ -70,7 +72,8 @@ ball.prototype.move = function() {
 	this.img.y += this.vy;
 	this.collision.x += this.vx;
 	this.collision.y += this.vy;
-};
+}
+;
 
 ball.prototype.bounce = function(circle) {
 
@@ -82,7 +85,7 @@ ball.prototype.bounce = function(circle) {
 	}
 	var vector_normal_x = this.collision.x - circle.collision.x;
 	var vector_normal_y = this.collision.y - circle.collision.y;
-	var vector_x = - vector_normal_y;
+	var vector_x = -vector_normal_y;
 	var vector_y = vector_normal_x;
 
 	var dp1 = this.vx * vector_x + this.vy * vector_y;
@@ -127,9 +130,9 @@ ball.prototype.update = function() {
 			this.move();
 		}
 	}
-	if (this.collision.isCollidingCircle(yellow.collision)) {
-		this.bounce(yellow);
-	} else if (this.collision.isCollidingCircle(red.collision)) {
-		this.bounce(red);
+	if (this.collision.isCollidingCircle(yellow_slime.collision)) {
+		this.bounce(yellow_slime);
+	} else if (this.collision.isCollidingCircle(red_slime.collision)) {
+		this.bounce(red_slime);
 	}
 };
