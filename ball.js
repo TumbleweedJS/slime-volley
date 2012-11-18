@@ -26,6 +26,11 @@ ball.prototype.reset = function() {
 		this.collision.x = this.img.x + 13;
 	}
 
+	if (yellow_slime.score === 7 || red_slime.score === 7) {
+		yellow_slime.score = 0;
+		red_slime.score = 0;
+	}
+
 	this.img.y = 200;
 	this.collision.y = 213;
 
