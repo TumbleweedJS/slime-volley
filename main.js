@@ -38,7 +38,7 @@ ball.collision = collision_ball;
 
 var gameloop = new TW.Gameloop.Gameloop();
 gameloop.fps = 30;
-gameloop.tick_per_second = 60;
+gameloop.tick_per_second = 30;
 
 keyboard = new TW.Event.KeyboardInput();
 
@@ -55,8 +55,7 @@ window.onload = function()
     view.pushLayer(background_layer);
     gameloop.object.push(red_slime);
     gameloop.object.push(yellow_slime);
-    gameloop.object.push(collision_yellow);
     gameloop.object.push(ball);
     gameloop.object.push(view);
     gameloop.start();
-}
+};

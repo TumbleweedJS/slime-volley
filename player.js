@@ -7,7 +7,7 @@
  */
 
 function player(x_min, x_max, type) {
-	this.move = 10;
+	this.move = 20;
 	this.img = null;
 	this.collision = null;
 	this.score = 0;
@@ -47,10 +47,10 @@ player.prototype.update = function() {
 
 	} else if (this.type === "IA") {
 		if (ball.img.x > 360) {
-			if (ball.collision.x < this.collision.x - 5) {
+			if (ball.collision.x < this.collision.x - 15 && ball.img.x > 425) {
 				this.moveleft();
 			}
-			else if (ball.collision.x > this.collision.x + 5) {
+			else if (ball.collision.x > this.collision.x + 15) {
 				this.moveright();
 			}
 		}
