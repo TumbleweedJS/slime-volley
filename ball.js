@@ -8,7 +8,7 @@
 
 function ball() {
 	this.vx = -20;
-	this.vy = 1;
+	this.vy = -10;
 	this.img = null;
 	this.collision = null;
 	this.time = 0;
@@ -17,19 +17,21 @@ ball.prototype.reset = function() {
 	gameloop.pause();
 	if (this.img.x < 390) {
 		red_slime.score++;
+		this.img.x = red_slime.img.x - 50;
+		this.collision.x = this.img.x - 13;
 	}
 	else {
 		yellow_slime.score++;
+		this.img.x = yellow_slime.img.x + 50;
+		this.collision.x = this.img.x + 13;
 	}
 
-	alert("Score : " + yellow_slime.score + " - " + red_slime.score);
-
-	this.vx = -20;
-	this.vy = 1;
-	this.img.x = 400;
-	this.collision.x = 413;
 	this.img.y = 200;
 	this.collision.y = 213;
+
+	this.vx = 0;
+	this.vy = -20;
+
 	this.time = 0;
 	gameloop.start();
 };
@@ -37,10 +39,6 @@ ball.prototype.reset = function() {
 ball.prototype.move = function() {
 	if (this.img.y >= 375) {
 		this.reset();
-		//        this.collision.x -= this.vx;
-		//        this.collision.y -= this.vy;
-		//        this.img.x -= this.vx;
-		//        this.img.y -= this.vy;
 		//        this.vy = -20;
 	}
 	if (this.img.x <= 0) {

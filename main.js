@@ -59,3 +59,4 @@ window.onload = function()
     gameloop.object.push(view);
     gameloop.start();
 };
+
