@@ -19,20 +19,20 @@ function player(x_min, x_max, type) {
 
 player.prototype.moveleft = function() {
 	if (this.img.x - this.move >= this.x_min) {
-		this.img.x -= this.move;
+		this.img.setPosition(this.img.x - this.move, this.img.y);
 		this.collision.x -= this.move;
 	} else if (this.img.x < this.x_min){
-		this.img.x = this.x_min;
+		this.img.setPosition(this.x_min, this.img.y);
 		this.collision.x = this.x_min + this.collision.radius;
 	}
 };
 
 player.prototype.moveright = function() {
 	if (this.img.x + this.move <= this.x_max) {
-		this.img.x += this.move;
+		this.img.setPosition(this.img.x + this.move, this.img.y);
 		this.collision.x += this.move;
 	} else if (this.img.x > this.x_max){
-		this.img.x = this.x_max;
+		this.img.setPosition(this.x_max, this.img.y);
 		this.collision.x = this.x_max - this.collision.radius;
 	}
 };
@@ -45,7 +45,7 @@ player.prototype.init_jump = function() {
 };
 
 player.prototype.jump = function() {
-	this.img.y += this.vy;
+	this.img.setPosition(this.img.x, this.img.y + this.vy);
 	this.collision.y += this.vy;
 
 	if (this.vy !== null) {
@@ -53,7 +53,7 @@ player.prototype.jump = function() {
 	}
 
 	if (this.img.y > 350) {
-		this.img.y = 350;
+		this.img.setPosition(this.img.x ,350);
 		this.collision.y = 400;
 		this.vy = null;
 	}
