@@ -40,6 +40,17 @@ ball.prototype.reset = function() {
 	this.time = 0;
 	red_score_img.src = "images/score-red-" + red_slime.score + ".png"
 	yellow_score_img.src = "images/score-yellow-" + yellow_slime.score + ".png"
+
+	if (red_slime.score == yellow_slime.score){
+		red_img.src = "images/slime-red-normal.png";
+		yellow_img.src = "images/slime-yellow-normal.png";
+	} else if (red_slime.score < yellow_slime.score) {
+		red_img.src = "images/slime-red-bad.png";
+		yellow_img.src = "images/slime-yellow-happy.png";
+	} else if (red_slime.score > yellow_slime.score) {
+		red_img.src = "images/slime-red-happy.png";
+		yellow_img.src = "images/slime-yellow-bad.png";
+	}
 	gameloop.start();
 };
 

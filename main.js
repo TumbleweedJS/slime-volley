@@ -23,7 +23,7 @@ var collision_ball = new TW.Collision.CollisionCircle(413, 213, 13);
 ball.collision = collision_ball;
 
 var yellow_img = new Image();
-yellow_img.src = "images/slime-yellow.png";
+yellow_img.src = "images/slime-yellow-normal.png";
 var yellow_slime_sprite = new TW.Graphic.Sprite(yellow_img);
 yellow_slime_sprite.setImage(yellow_img);
 yellow_slime_sprite.x = 100;
@@ -34,7 +34,7 @@ var collision_yellow = new TW.Collision.CollisionCircle(150, 400, 50);
 yellow_slime.collision = collision_yellow;
 
 var red_img = new Image();
-red_img.src = "images/slime-red.png";
+red_img.src = "images/slime-red-normal.png";
 var red_slime_sprite = new TW.Graphic.Sprite(red_img);
 red_slime_sprite.setImage(red_img);
 red_slime_sprite.x = 600;
