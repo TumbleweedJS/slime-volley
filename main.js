@@ -49,13 +49,13 @@ score_yellow_1.setMode("FILLED");
 score_yellow_1.setFillColor("yellow");*/
 
 var red_score_img = new Image();
-red_score_img.src = "images/score-red-0.png"
+red_score_img.src = "images/score-red-0.png";
 var red_score_sprite = new TW.Graphic.Sprite(red_score_img);
 red_score_sprite.setImage(red_score_img);
 red_score_sprite.x = 431;
 red_score_sprite.y = 20;
 var yellow_score_img = new Image();
-yellow_score_img.src = "images/score-yellow-0.png"
+yellow_score_img.src = "images/score-yellow-0.png";
 var yellow_score_sprite = new TW.Graphic.Sprite(yellow_score_img);
 yellow_score_sprite.setImage(yellow_score_img);
 yellow_score_sprite.x = 0;
