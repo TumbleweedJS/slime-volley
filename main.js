@@ -44,6 +44,10 @@ red_slime.img = red_slime_sprite;
 var collision_red = new TW.Collision.CollisionCircle(650, 400, 50);
 red_slime.collision = collision_red;
 
+/*var score_yellow_1 = new TW.Graphic.Circle();
+score_yellow_1.setMode("FILLED");
+score_yellow_1.setFillColor("yellow");*/
+
 var red_score_img = new Image();
 red_score_img.src = "images/score-red-0.png"
 var red_score_sprite = new TW.Graphic.Sprite(red_score_img);
@@ -63,6 +67,7 @@ layer.addChild(yellow_slime_sprite);
 layer.addChild(red_slime_sprite);
 layer.addChild(net_sprite);
 layer.addChild(ball_sprite);
+//layer.addChild(score_yellow_1);
 layer.addChild(red_score_sprite);
 layer.addChild(yellow_score_sprite);
 var gameloop = new TW.Gameloop.Gameloop();
