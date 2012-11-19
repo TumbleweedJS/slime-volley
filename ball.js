@@ -7,8 +7,8 @@
  */
 
 function ball() {
-	this.vx = -20;
-	this.vy = -10;
+	this.vx = 20;
+	this.vy = -5;
 	this.img = null;
 	this.collision = null;
 	this.time = 0;
@@ -22,7 +22,7 @@ ball.prototype.reset = function() {
 	}
 	else {
 		yellow_slime.score++;
-		this.img.setPosition(red_slime.img.x + 50, this.img.y);
+		this.img.setPosition(yellow_slime.img.x + 50, this.img.y);
 		this.collision.x = this.img.x + 13;
 	}
 
@@ -38,18 +38,18 @@ ball.prototype.reset = function() {
 	this.vy = -20;
 
 	this.time = 0;
-	red_score_img.src = "images/score-red-" + red_slime.score + ".png"
-	yellow_score_img.src = "images/score-yellow-" + yellow_slime.score + ".png"
+	red_score_img.src = "images/score-red-" + red_slime.score + ".png";
+	yellow_score_img.src = "images/score-yellow-" + yellow_slime.score + ".png";
 
 	if (red_slime.score == yellow_slime.score){
-		red_img.src = "images/slime-red-normal.png";
-		yellow_img.src = "images/slime-yellow-normal.png";
+		red_slime.img.setImage(red_img);
+		yellow_slime.img.setImage(yellow_img);
 	} else if (red_slime.score < yellow_slime.score) {
-		red_img.src = "images/slime-red-bad.png";
-		yellow_img.src = "images/slime-yellow-happy.png";
+		red_slime.img.setImage(red_img_bad);
+		yellow_slime.img.setImage(yellow_img_happy);
 	} else if (red_slime.score > yellow_slime.score) {
-		red_img.src = "images/slime-red-happy.png";
-		yellow_img.src = "images/slime-yellow-bad.png";
+		red_slime.img.setImage(red_img_happy);
+		yellow_slime.img.setImage(yellow_img_bad);
 	}
 	gameloop.start();
 };

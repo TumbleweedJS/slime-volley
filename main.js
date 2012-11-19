@@ -24,6 +24,10 @@ ball.collision = collision_ball;
 
 var yellow_img = new Image();
 yellow_img.src = "images/slime-yellow-normal.png";
+var yellow_img_bad = new Image();
+yellow_img_bad.src = "images/slime-yellow-bad.png";
+var yellow_img_happy = new Image();
+yellow_img_happy.src = "images/slime-yellow-happy.png";
 var yellow_slime_sprite = new TW.Graphic.Sprite(yellow_img);
 yellow_slime_sprite.setImage(yellow_img);
 yellow_slime_sprite.x = 100;
@@ -35,6 +39,10 @@ yellow_slime.collision = collision_yellow;
 
 var red_img = new Image();
 red_img.src = "images/slime-red-normal.png";
+var red_img_bad = new Image();
+red_img_bad.src = "images/slime-red-bad.png";
+var red_img_happy = new Image();
+red_img_happy.src = "images/slime-red-happy.png";
 var red_slime_sprite = new TW.Graphic.Sprite(red_img);
 red_slime_sprite.setImage(red_img);
 red_slime_sprite.x = 600;
@@ -68,7 +76,6 @@ layer.addChild(yellow_score_sprite);
 var gameloop = new TW.Gameloop.Gameloop();
 gameloop.fps = 30;
 gameloop.tick_per_second = 30;
-
 keyboard = new TW.Event.KeyboardInput();
 
 window.onload = function()
@@ -82,4 +89,3 @@ window.onload = function()
 	gameloop.object.push(ball);
 	gameloop.start();
 };
-
