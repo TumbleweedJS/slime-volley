@@ -56,15 +56,19 @@ SlimePlayer.prototype.update = function(object) {
 		if (object.getState("KEY_SPACE") === TW.Event.KeyboardInput.KEY_PRESSED) {
 			this.jump();
 		}
-	} else if (this.type === "IA" && object.x > 400) {
-		if (object.x > this.collision.x + 15) {
+	} else if (this.type === "IA" && object.collision.x > 400) {
+		if (object.collision.x > this.collision.x + 15 || (object.collision.x < 400 && this.collision.x < 650)) {
 			this.movement.x = 20;
-		} else if (object.x < this.collision.x - 15) {
+		} else if (object.collision.x < this.collision.x - 15) {
 			this.movement.x = -20;
 		} else {
 			this.movement.x = 0;
-//			this.jump();
 		}
+		if (object.collision.x > 600 && object.collision.y < 350 && object.collision.y > 250 && object.movement.y > 0){
+			this.jump();
+		}
+
+
 	}
 	if (this.jumping) {
 		this.movement.y += 3;

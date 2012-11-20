@@ -80,7 +80,7 @@ SlimeGame.prototype.score = function () {
 
 SlimeGame.prototype.update = function() {
 	this.player.update(this.keyboard);
-	this.ia.update(this.ball.collision);
+	this.ia.update(this.ball);
 	this.ball.update(this.player.collision, this.ia.collision, this.net.collision);
 	if (this.ball.position.y > this.ball.y_max) {
 		this.score();
