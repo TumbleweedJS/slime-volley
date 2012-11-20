@@ -31,7 +31,7 @@ SlimeBall.prototype.reverseBounce = function(collision) {
 	this.movement.y *= -1;
 };
 
-SlimeBall.prototype.move = function() {
+SlimeBall.prototype.move = function(collision_player, collision_ia, collision_net) {
 
 	this.position = this.position.add(this.movement);
 	if (this.position.x > this.x_max) {
@@ -47,6 +47,14 @@ SlimeBall.prototype.move = function() {
 	this.sprite.setPosition(this.position.x, this.position.y);
 	this.collision.x = this.position.x + this.radius;
 	this.collision.y = this.position.y + this.radius;
+
+	if (this.collision.isCollidingCircle(collision_player)) {
+		this.bounce(collision_player);
+	} else if (this.collision.isCollidingCircle(collision_ia)) {
+		this.bounce(collision_ia);
+	} else if (this.collision.isCollidingBox(collision_net)) {
+		this.reverseBounce(collision_net);
+	}
 };
 
 SlimeBall.prototype.bounce = function(collision) {
@@ -71,7 +79,6 @@ SlimeBall.prototype.bounce = function(collision) {
 
 	this.movement = proj1.add(proj2);
 	this.movement = this.movement.div(this.movement.getLength() / 25);
-
 };
 
 SlimeBall.prototype.reset = function (x) {
@@ -87,7 +94,7 @@ SlimeBall.prototype.reset = function (x) {
 SlimeBall.prototype.update = function(collision_player, collision_ia, collision_net) {
 	var date = new Date();
 	if (this.time === 0) {
-		this.move();
+		this.move(collision_player, collision_ia, collision_net);
 		this.time = date.valueOf();
 	} else {
 		var count = (date.valueOf() - this.time);
@@ -96,14 +103,7 @@ SlimeBall.prototype.update = function(collision_player, collision_ia, collision_
 			this.time = date.valueOf();
 		}
 		for (count; count > 1; count--) {
-			this.move();
+			this.move(collision_player, collision_ia, collision_net);
 		}
-	}
-	if (this.collision.isCollidingCircle(collision_player)) {
-		this.bounce(collision_player);
-	} else if (this.collision.isCollidingCircle(collision_ia)) {
-		this.bounce(collision_ia);
-	} else if (this.collision.isCollidingBox(collision_net)) {
-		this.reverseBounce(collision_net);
 	}
 };
