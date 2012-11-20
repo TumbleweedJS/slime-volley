@@ -64,7 +64,7 @@ SlimePlayer.prototype.update = function(object) {
 		} else {
 			this.movement.x = 0;
 		}
-		if (object.collision.x > 400 && this.collision.y - object.collision.y < 200 && this.collision.x < 740 && this.collision.y - object.collision.y > 50) {
+		if (object.collision.x > 400 && this.collision.y - object.collision.y < 200 && this.collision.x < 720 && this.collision.y - object.collision.y > 120) {
 			this.jump();
 		}
 
