@@ -52,20 +52,20 @@ SlimeGame.prototype.draw = function() {
 
 SlimeGame.prototype.score = function () {
 
+	if (this.ball.position.x < 400) {
+		this.ia_score++;
+		this.ball.reset(this.ia.collision.x);
+	} else {
+		this.player_score++;
+		this.ball.reset(this.player.collision.x);
+	}
 	if (this.ia_score === 8 || this.player_score === 8) {
 		this.ia_score = 0;
 		this.player_score = 0;
 	}
+	this.sprite_score_player.setImage(this.imageLoader.getImageByName("yellow-" + this.player_score));
+	this.sprite_score_ai.setImage(this.imageLoader.getImageByName("red-" + this.ia_score));
 
-	if (this.ball.position.x < 400) {
-		this.ia_score++;
-		this.sprite_score_ai.setImage(this.imageLoader.getImageByName("red-" + this.ia_score));
-		this.ball.reset(this.ia.collision.x);
-	} else {
-		this.player_score++;
-		this.sprite_score_player.setImage(this.imageLoader.getImageByName("yellow-" + this.player_score));
-		this.ball.reset(this.player.collision.x);
-	}
 	if (this.ia_score > this.player_score) {
 		this.player.sprite.setImage(this.imageLoader.getImageByName("yellow-bad"));
 		this.ia.sprite.setImage(this.imageLoader.getImageByName("red-happy"));
