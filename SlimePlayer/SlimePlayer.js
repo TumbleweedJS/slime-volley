@@ -53,7 +53,7 @@ SlimePlayer.prototype.update = function(object) {
 		} else {
 			this.movement.x = 0;
 		}
-		if (object.getState("KEY_SPACE") === TW.Event.KeyboardInput.KEY_PRESSED) {
+		if (object.getState("KEY_SPACE") === TW.Event.KeyboardInput.KEY_PRESSED || object.getState("KEY_UP") === TW.Event.KeyboardInput.KEY_PRESSED) {
 			this.jump();
 		}
 	} else if (this.type === "IA" && object.collision.x > 400) {
